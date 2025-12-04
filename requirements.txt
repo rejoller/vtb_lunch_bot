@@ -1,0 +1,12 @@
+requests
+pandas
+aiogram
+easyocr
+Pillow
+pytesseract
+sqlalchemy
+aiosheduler
+icecream
+redis
+psycopg
+greenlet
