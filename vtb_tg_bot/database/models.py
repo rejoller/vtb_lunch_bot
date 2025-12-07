@@ -48,8 +48,6 @@ class User_message(Base):
     user_id: Mapped[int] = mapped_column(BIGINT, ForeignKey('user.user_id'))
     date_send: Mapped[DateTime] = mapped_column(TIMESTAMP)
     response_text: Mapped[str] = mapped_column(String, nullable=True)
-
-    
     
 
 
@@ -65,7 +63,11 @@ class Menu(Base):
 
     
     
-    
+class Menu_review(Base):
+    __tablename__ = 'menu_review'
+    review_id: Mapped[int] = mapped_column(BIGINT, primary_key=True, autoincrement=True)
+    dttm: Mapped[DateTime] = mapped_column(TIMESTAMP)
+    review_text: Mapped[str] = mapped_column(String, nullable=True)
     
     
     

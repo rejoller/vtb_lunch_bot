@@ -3,13 +3,13 @@ import datetime
 import pytz
 import sys
 import os
-from config import LOGGING_DIR
 
+LOGGING_DIR = os.getenv('LOGGING_DIR')
 
 class Formatter(logging.Formatter):
     def converter(self, timestamp):
         dt = datetime.datetime.fromtimestamp(timestamp, tz=pytz.UTC)
-        return dt.astimezone(pytz.timezone("Asia/Krasnoyarsk"))
+        return dt.astimezone(pytz.timezone("Europe/Moscow"))
 
     def formatTime(self, record, datefmt=None):
         if sys.meta_path is None:

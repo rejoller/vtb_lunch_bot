@@ -1,11 +1,25 @@
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
-from database.db_config import (user, password, host, port, database)
+import os
 from database.models import Base
+import logging
+
+USER = os.getenv('USER')
+PASSWORD = os.getenv('PASSWORD')
+DB_HOST = os.getenv('DB_HOST')
+port = os.getenv('PORT')
+database = os.getenv('DATABASE')
 
 
-DBURL=f'postgresql+psycopg_async://{user}:{password}@{host}:{port}/{database}'
 
 
+DBURL=f'postgresql+psycopg://{USER}:{PASSWORD}@{DB_HOST}:{port}/{database}'
+
+
+
+DBURL=f'postgresql+psycopg://vtb_lunch_bot:vtb_lunch_bot@{DB_HOST}:{port}/vtb_lunch_bot'
+print(DBURL)
+
+logging.info(DBURL)
 
 engine = create_async_engine(DBURL, echo=False)
 session_maker = async_sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)
