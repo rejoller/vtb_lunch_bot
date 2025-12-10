@@ -15,7 +15,6 @@ from logging_middleware import LoggingMiddleware
 from users_middleware import UsersMiddleware
 from chat_action_mw import ChatActionMiddleware
 from aiogram.fsm.storage.memory import MemoryStorage
-from apscheduler.triggers.cron import CronTrigger
 
 
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
@@ -36,24 +35,13 @@ async def main():
     scheduler = AsyncIOScheduler(timezone=ZoneInfo("Europe/Moscow"))
 
     await create_db()
-    import pytz
-
-    moscow_tz = pytz.timezone("Europe/Moscow")
-
     async with session_maker() as session:
-        scheduler = AsyncIOScheduler(timezone=moscow_tz)
-        
         scheduler.add_job(
             get_menu,
-            trigger=CronTrigger(
-                day_of_week='mon-fri',  # только будние дни
-                hour=9,
-                minute=57,
-                timezone=moscow_tz
-            ),
+            'cron',
+            minutes=10,
             kwargs={"session": session}
         )
-
     scheduler.start()
     # await drop_db()
     router = setup_routers()
@@ -70,3 +58,4 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+

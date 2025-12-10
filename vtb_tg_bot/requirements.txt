@@ -11,3 +11,4 @@ redis
 psycopg
 greenlet
 openai
+psycopg[binary]

@@ -21,7 +21,7 @@ print(DBURL)
 
 logging.info(DBURL)
 
-engine = create_async_engine(DBURL, echo=False)
+engine = create_async_engine(DBURL, echo=False, pool_size=15, pool_timeout=30, pool_recycle=900)
 session_maker = async_sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)
 
 
