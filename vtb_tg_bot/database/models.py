@@ -33,7 +33,16 @@ class Subscription(Base):
     user_id: Mapped[int] = mapped_column(ForeignKey('user.user_id'), primary_key=True)
     category_id: Mapped[int] = mapped_column(ForeignKey('category.category_id'), primary_key=True)
     
+
+
+class Subscriber(Base):
+    __tablename__ = 'subscriber'
+    user_id: Mapped[int] = mapped_column(ForeignKey('user.user_id'))
+    date: Mapped[DateTime] = mapped_column(TIMESTAMP) 
     
+
+
+
 class Bot_message(Base):
     __tablename__ = 'bot_message'
     message_id: Mapped[int] = mapped_column(BIGINT, primary_key=True, autoincrement=True)
