@@ -47,8 +47,8 @@ async def main():
             get_menu,
             trigger=CronTrigger(
                 day_of_week='mon-fri',  # только будние дни
-                hour=9,
-                minute=57,
+                hour=17,
+                minute=00,
                 timezone=moscow_tz
             ),
             kwargs={"session": session}
