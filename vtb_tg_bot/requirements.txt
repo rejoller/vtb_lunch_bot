@@ -13,4 +13,4 @@ greenlet
 openai
 psycopg[binary]
 telebot
-pendulun
+pendulum
