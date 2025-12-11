@@ -8,3 +8,7 @@ pendulum
 openpyxl
 apache-airflow-providers-postgres
 psycopg[binary]
+telebot
+pendulum
+pandas
+Pillow
