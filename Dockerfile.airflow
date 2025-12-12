@@ -5,4 +5,7 @@ COPY requirements.txt /requirements.txt
 
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir --user -r /requirements.txt
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4ab67a904385c13ee03830637ea549b6b9d25849
