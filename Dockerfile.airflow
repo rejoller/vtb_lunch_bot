@@ -1,12 +1,6 @@
 FROM apache/airflow:2.8.1
 
-USER root
-
-COPY requirements.txt /tmp/requirements.txt
+COPY requirements.txt /requirements.txt
 
 RUN pip install --upgrade pip
-
-# устанавливаем глобально для python3.8
-RUN pip install --no-cache-dir -r /tmp/requirements.txt
-RUN pip install --no-cache-dir openai
-USER airflow
+RUN pip install --no-cache-dir --user -r /requirements.txt
