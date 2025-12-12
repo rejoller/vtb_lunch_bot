@@ -12,3 +12,4 @@ telebot
 pendulum
 pandas
 Pillow
+openai

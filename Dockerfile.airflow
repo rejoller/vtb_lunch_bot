@@ -8,5 +8,5 @@ RUN pip install --upgrade pip
 
 # устанавливаем глобально для python3.8
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
-
+RUN pip install --no-cache-dir openai
 USER airflow
