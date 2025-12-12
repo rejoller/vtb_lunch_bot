@@ -46,14 +46,18 @@ with DAG(
 
         filename = url.split('/')[-1]
         filename = t + '_'+ filename
-
+        if not os.path.exists(SAVE_DIR):
+            os.makedirs(SAVE_DIR)
+            
         filepath = os.path.join(SAVE_DIR, filename)
-
+        
         resp = requests.get(url, headers={
             "Cache-Control": "no-cache",
             "Pragma": "no-cache",
             "Expires": "0"
         })
+        
+        print(resp.status_code)
         
         if resp.ok:
             with open(filepath, 'wb') as f:

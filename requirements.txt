@@ -13,3 +13,4 @@ pendulum
 pandas
 Pillow
 openai
+pytesseract
