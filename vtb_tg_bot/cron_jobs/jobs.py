@@ -32,6 +32,7 @@ async def get_menu(session: AsyncSession):
 
     
     with open(filepath, 'wb') as f:
+        
         openai_api_key = os.getenv('openai_api_key')
 
         
@@ -42,9 +43,10 @@ async def get_menu(session: AsyncSession):
             "Expires": "0"
         })
         
+        
         def teseract_recognition(path_img):
             return pytesseract.image_to_string(Image.open(path_img), lang='rus+eng', config=r'--oem 3 --psm 6') 
-        f.write(resp.content)
+        
         
         response_tesseract = teseract_recognition(filepath)
         
@@ -72,7 +74,7 @@ async def get_menu(session: AsyncSession):
             query = insert(Menu_review).values(dttm=dt.now(), review_text=str(review_text))
             #-4897200857
 
-            await bot.send_message(chat_id = '964635576', text = review_text, parse_mode = 'HTML') 
+            await bot.send_message(chat_id = '-4897200857', text = review_text, parse_mode = 'HTML') 
             await session.execute(query)
             await session.commit()
         else:
