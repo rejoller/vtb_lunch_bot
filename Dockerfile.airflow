@@ -1,8 +1,12 @@
-# Используем официальный образ Airflow
 FROM apache/airflow:2.8.1
 
-COPY requirements.txt /requirements.txt
+USER root
+
+COPY requirements.txt /tmp/requirements.txt
 
 RUN pip install --upgrade pip
-RUN pip install --no-cache-dir --user -r /requirements.txt
 
+# устанавливаем глобально для python3.8
+RUN pip install --no-cache-dir -r /tmp/requirements.txt
+
+USER airflow
