@@ -38,7 +38,7 @@ class Subscription(Base):
 class Subscriber(Base):
     __tablename__ = 'subscriber'
     id: Mapped[int] = mapped_column(BIGINT, primary_key=True, autoincrement=True)
-    user_id: Mapped[int] = mapped_column(String, nullable=True)
+    user_id: Mapped[int] = mapped_column(String(255), nullable=True)
     date: Mapped[DateTime] = mapped_column(TIMESTAMP) 
     
 

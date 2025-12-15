@@ -1,6 +1,5 @@
 FROM apache/airflow:2.8.1
 
-# 1️⃣ системные пакеты — ТОЛЬКО root
 USER root
 
 RUN apt-get update && \
@@ -10,7 +9,7 @@ RUN apt-get update && \
         libtesseract-dev && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# 2️⃣ python зависимости — ТОЛЬКО airflow
+
 USER airflow
 
 COPY requirements.txt /tmp/requirements.txt

@@ -108,7 +108,7 @@ with DAG(
         
         bot = telebot.TeleBot(token=Variable.get("BOT_TOKEN"))
         
-        pg_hook = PostgresHook(postgres_conn_id="mcr_news_tg_bot")
+        pg_hook = PostgresHook(postgres_conn_id="vtb_lunch_tg_bot")
         conn = pg_hook.get_conn()
         session = conn.cursor()
         
@@ -120,7 +120,7 @@ with DAG(
         
         for id in chat_ids:
             try:
-                bot.send_message(chat_id=id, text=review_text)
+                bot.send_message(chat_id=id, text=review_text, parse_mode='HTML')
             except Exception as e:
                 logging.error(f"Failed to send message to {id} {e}")
                 

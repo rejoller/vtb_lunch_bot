@@ -26,36 +26,21 @@ bot = Bot(os.getenv('BOT_TOKEN'))
       
 
 async def main():
-    from cron_jobs.jobs import get_menu
-  #  bot = Bot(os.getenv('BOT_TOKEN'))
+
+
     storage = MemoryStorage()
-    # storage = RedisStorage.from_url(os.getenv('REDIS_URL'), key_builder=DefaultKeyBuilder(with_destiny=True, with_bot_id=True))
+
     setup_logging()
     dp = Dispatcher(storage = storage)
     dp.update.middleware(DataBaseSession(session_pool=session_maker))
-    scheduler = AsyncIOScheduler(timezone=ZoneInfo("Europe/Moscow"))
+
 
     await create_db()
-    import pytz
 
-    moscow_tz = pytz.timezone("Europe/Moscow")
 
-    async with session_maker() as session:
-        scheduler = AsyncIOScheduler(timezone=moscow_tz)
-        
-        scheduler.add_job(
-            get_menu,
-            trigger=CronTrigger(
-                day_of_week='mon-fri',  # только будние дни
-                hour=10,
-                minute=2,
-                timezone=moscow_tz
-            ),
-            kwargs={"session": session}
-        )
 
-    scheduler.start()
-    # await drop_db()
+
+
     router = setup_routers()
     dp.include_router(router)
     dp.update.middleware(ChatActionMiddleware())
