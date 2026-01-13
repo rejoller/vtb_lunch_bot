@@ -219,3 +219,5 @@ __marimo__/
 *.ipynb
 config.py
 db_config.py
+*.pdf
+document
