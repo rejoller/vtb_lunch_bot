@@ -14,3 +14,4 @@ pandas
 Pillow
 openai
 pytesseract
+kurigram

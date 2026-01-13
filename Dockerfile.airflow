@@ -3,12 +3,13 @@ FROM apache/airflow:2.8.1
 USER root
 
 RUN apt-get update && \
-    apt-get install -y \
+    apt-get install -y --no-install-recommends \
         tesseract-ocr \
         tesseract-ocr-rus \
-        libtesseract-dev && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
-
+        libtesseract-dev \
+        poppler-utils && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 USER airflow
 
